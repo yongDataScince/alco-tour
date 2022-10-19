@@ -1,0 +1,77 @@
+$text-black: #1F1F1F;
+$main-yellow: #F6D15D;
+$main-blue: #1EDECB;
+
+html, body, .App, #root {
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.font-96 {
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 881;
+  font-size: 96px;
+  line-height: 100%;
+}
+
+.font-77 {
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 881;
+  font-size: 77px;
+  line-height: 100%;
+}
+
+.font-72 {
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 881;
+  font-size: 72px;
+  line-height: 100%;
+}
+
+.font-30 {
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 881;
+  font-size: 30px;
+  line-height: 100%;
+}
+
+.font-24 {
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 881;
+  font-size: 24px;
+  line-height: 100%;
+}
+
+.font-24-p {
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 140%;
+}
+
+.font-20 {
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 881;
+  font-size: 20px;
+  line-height: 100%;
+}
+
+.font-16-p {
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+}
