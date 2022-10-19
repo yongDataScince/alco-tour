@@ -17,9 +17,7 @@ export const CoinbaseWallet = new WalletLinkConnector({
 
 function App({ context }) {
   const { active, activate, deactivate, library, chainId, account } = useWeb3React();
-  useEffect(() => {
-    console.log(account);
-  }, [account])
+
   return (
     <div className="App">
       <Button text="btn" width={100} height={50} onClick={() => activate(CoinbaseWallet, console.log)} />

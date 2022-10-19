@@ -2,6 +2,11 @@ $text-black: #1F1F1F;
 $main-yellow: #F6D15D;
 $main-blue: #1EDECB;
 
+@font-face {
+  font-family: "Roboto Flex";
+  src: url("./assets/RobotoFlex-VariableFont_GRAD\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf") format("woff2");
+}
+
 html, body, .App, #root {
   overflow-x: hidden;
   width: 100vw;
