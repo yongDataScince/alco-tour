@@ -1,8 +1,6 @@
 import Button from './components/UI/Button';
-import Input from './components/UI/Input';
 import './App.css';
 import { useState } from 'react';
-import { InputGroup } from './components/UI/InputGroup/InputGroup';
 
 function App() {
 
