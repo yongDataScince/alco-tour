@@ -3,7 +3,7 @@ import cn from 'classnames';
 import YeBg from "../../../assets/button-bg-ye.svg"
 import BlBg from "../../../assets/button-bg-bl.svg"
 
-export const Button = ({ text, variant, width, height }) => {
+export const Button = ({ text, variant, width, height, onClick }) => {
   return (
     <div className={cn("btn-group", {
       "yellow": !variant || variant === "yellow",
@@ -12,7 +12,7 @@ export const Button = ({ text, variant, width, height }) => {
       <img className="btn-bg" src={
         !variant || variant === "yellow" ? YeBg : BlBg
       } alt="" />
-      <button className="main-btn" style={{ fontSize: (height / 100) * 22, paddingTop: (height / 100) * 20 }}>
+      <button className="main-btn" style={{ fontSize: (height / 100) * 22, paddingTop: (height / 100) * 20 }} onClick={onClick}>
         {text}
       </button>
     </div>
