@@ -1,12 +1,10 @@
 import Button from './components/UI/Button';
 import './App.css';
 import { useState } from 'react';
-import { useWalletConnect } from './hooks/use-connect';
 
 function App() {
 
   const [inp, setInp] = useState('');
-  useWalletConnect()
 
   return (
     <div className="App">
