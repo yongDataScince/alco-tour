@@ -7,8 +7,9 @@ import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 import { init, useConnectWallet } from '@web3-onboard/react'
 import injectedModule from '@web3-onboard/injected-wallets'
 import Header from './components/Header';
-import Brige from './components/Brige';
 import { Bottles } from './components/Bottles/Bottles';
+import { Paper } from './components/Paper/Paper';
+import { Footer } from './components/Footer/Footer';
 
 const injected = injectedModule()
 
@@ -49,7 +50,8 @@ function App() {
       <Header />
       <Bottles />
       <Button className="lottery" text="Result lottery" width="40%" height={160} />
-      
+      <Paper />
+      <Footer />
     </div>
   );
 }
