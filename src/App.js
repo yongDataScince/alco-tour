@@ -1,15 +1,16 @@
-import Button from './components/UI/Button';
 import './App.css';
-import { useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core'
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 import { init, useConnectWallet } from '@web3-onboard/react'
 import injectedModule from '@web3-onboard/injected-wallets'
-import Header from './components/Header';
-import { Bottles } from './components/Bottles/Bottles';
-import { Paper } from './components/Paper/Paper';
-import { Footer } from './components/Footer/Footer';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { Main } from './routes/Main';
+
 
 const injected = injectedModule()
 
@@ -47,11 +48,11 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Bottles />
-      <Button className="lottery" text="Result lottery" width="40%" height={160} />
-      <Paper />
-      <Footer />
+      <Router>
+        <Routes>
+          <Route path='/' element={<Main />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
