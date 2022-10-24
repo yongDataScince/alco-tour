@@ -1,0 +1,29 @@
+.bottles__main {
+  width: 100vw;
+  padding: 100px 5%;
+  display: flex;
+  justify-content: space-between;
+
+  &-box {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    &:nth-child(2) {
+      margin-top: 40px;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .btn-group {
+      transform: translate(-10px, -50px);
+      width: 100% !important;
+    }
+
+    button {
+      padding-top: 20px !important;
+      font-size: 16px !important;
+    }
+  }
+}

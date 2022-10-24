@@ -9,8 +9,26 @@ $main-blue: #1EDECB;
 
 html, body, .App, #root {
   overflow-x: hidden;
+  overflow-y: auto;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  background: #000;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  background-image: url("./assets/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-items: center;
+  
+  .lottery {
+    .main-btn {
+      padding-top: 35px !important;
+      font-size: 22px !important;
+    }
+  }
 }
 
 * {
