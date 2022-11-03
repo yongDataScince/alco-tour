@@ -1,0 +1,57 @@
+.staking-card {
+  padding: 30px;
+  background: rgba(255, 240, 186, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0px 4px 16px rgba(252, 230, 153, 0.19);
+  backdrop-filter: blur(30px);
+  border-radius: 60px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  &:nth-child(even) {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+
+  img {
+    width: 100%;
+    height: 70%;
+    border-radius: 55px;
+    margin-bottom: 20px;
+  }
+
+  &__name {
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+    font-weight: 881;
+    font-size: 30px;
+    line-height: 110%;
+    margin-bottom: 14px;
+  }
+
+  &__btn-group {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    margin-top: auto;
+    justify-content: space-between;
+  }
+
+  &__btn {
+    width: 50%;
+    height: 70px;
+    background: none;
+    border: none;
+    background-size: contain;
+    background: rgb(255, 241, 93);
+    margin-right: 16px;
+
+    &.blue {
+      background: rgb(92, 181, 254);
+      margin-right: 0;  
+    }
+  }
+}

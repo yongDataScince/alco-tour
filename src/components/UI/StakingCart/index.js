@@ -1,0 +1,1 @@
+export { StakingCard as default } from "./StakingCard"

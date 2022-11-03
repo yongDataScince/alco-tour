@@ -7,15 +7,15 @@ export const Bottles = () => {
     <div className="bottles__main">
       <div className="bottles__main-box">
         <img src={chest} alt="" />
-        <Button text="Open Rum Box" width="100%" height={100} variant="blue" />
+        <Button text="Open Rum Box" width="100%" height={70} variant="blue" />
       </div>
       <div className="bottles__main-box">
         <img src={chest} alt="" />
-        <Button text="Open Rum Box" width="100%" height={100} variant="blue" />
+        <Button text="Open Rum Box" width="100%" height={70} variant="blue" />
       </div>
       <div className="bottles__main-box">
         <img src={chest} alt="" />
-        <Button text="Open Rum Box" width="100%" height={100} variant="blue" />
+        <Button text="Open Rum Box" width="100%" height={70} variant="blue" />
       </div>
     </div>
   )

@@ -19,8 +19,6 @@ export const initContracts = createAsyncThunk("contracts/init-contracts", async 
   const nftBottleContract = new ethers.Contract('0xa30a01083d91Ca190870BeC5F063da1560389F71', NFTBottle.abi, provider)
   const bottleStakingContract = new ethers.Contract('0x4bccb5A735DBb06C187d011ADF82f4109D85692e', BottleStaking.abi, provider)
   const lotteryContract = new ethers.Contract('0x7Ac5b0cbf28E5CD820ADcB68abAFC50C4249998A', Lottery.abi, provider)
-
-  
 })
 
 export const lotteryResult = createAsyncThunk("contracts/lottery-result", async () => {

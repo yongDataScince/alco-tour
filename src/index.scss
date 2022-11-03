@@ -1,11 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,900&display=swap");
 $text-black: #1F1F1F;
 $main-yellow: #F6D15D;
 $main-blue: #1EDECB;
 
-@font-face {
-  font-family: "Roboto Flex";
-  src: url("./assets/RobotoFlex-VariableFont_GRAD\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf") format("woff2");
-}
+// @font-face {
+//   font-family: "Roboto Flex";
+//   src: url("./assets/RobotoFlex-VariableFont_GRAD\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf") format("woff2");
+// }
 
 html, body, .App, #root {
   overflow-x: hidden;
@@ -18,21 +19,41 @@ html, body, .App, #root {
 .App {
   display: flex;
   flex-direction: column;
-  background-image: url("./assets/bg.png");
+  // background-image: url("./assets/bg.png");
   background-size: cover;
   background-repeat: no-repeat;
   align-items: center;
   
   .lottery {
-    .main-btn {
-      padding-top: 35px !important;
-      font-size: 22px !important;
-    }
+    width: 33% !important;
+    font-size: 24px !important;
   }
 }
 
 * {
   box-sizing: border-box;
+  font-family: 'Roboto Flex';
+}
+
+.staking {
+  width: 100vw;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #FFF;
+  flex-direction: column;
+  padding: 0 5%;
+
+  &__cards-block {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .font-96 {
