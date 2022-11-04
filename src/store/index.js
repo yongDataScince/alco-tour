@@ -7,6 +7,7 @@ import Lottery from "../assets/abi/Lottery.json"
 
 const initialContractsState = {
   provider: null,
+  connected: false,
   accounts: [],
   nftBoxContract: undefined,
   nftBottleContract: undefined,
@@ -76,6 +77,7 @@ export const contractsSlice = createSlice({
   initialState: initialContractsState,
   extraReducers: (builder) => {
     builder.addCase(initContracts.fulfilled, (state, { payload }) => {
+      state.connected = true;
       state.provider = payload.provider;
       state.bottleStakingContract = payload.bottleStakingContract;
       state.nftBottleContract = payload.nftBottleContract;

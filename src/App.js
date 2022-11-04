@@ -11,14 +11,15 @@ import { Staking } from './routes/Staking';
 import { Link } from "react-router-dom";
 import { Admin } from './routes/Admin/Admin';
 import { ConnectBtn } from './components/ConnectBtn/ConnectBtn';
+import { useSelector } from 'react-redux';
 
 function App() {
-
+  const { connected } = useSelector((state) => state.contracts)
   return (
     <div className="App">
       <Router>
         <header className="header__main-nav">
-          <ConnectBtn />
+          <div style={{ opacity: Number(!connected), visibility: !connected ? 'visible' : 'hidden', transition: '0.1s' }}><ConnectBtn /></div>
           <img src={logo} className="header__main-logo" alt="" />
           <p className="header__main-text font-16-p">
             <Link to="/staking">Staking</Link>

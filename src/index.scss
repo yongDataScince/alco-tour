@@ -12,19 +12,32 @@ $main-blue: #1EDECB;
   width: 100vw;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 0 10%;
+  justify-content: space-between;
+  padding: 10px 10%;
 
   a, p {
     margin: 0;
+    color: #FFF !important;
+    text-decoration: none;
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 881;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    font-stretch: 110;
+  }
+
+  .main-btn {
+    padding-top: 25px !important;
+    transform: translateY(-20px);
   }
 }
 
 .header__main-logo {
-  width: 150px;
-  height: 150px;
-  transform: translateX(-10%);
-  left: 50%;
+  height: 70px;
+  width: 70px;
+  transform: translateX(-100%) !important;
 }
 
 .buttons {
