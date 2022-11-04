@@ -19,120 +19,125 @@ export const Admin = () => {
               <Button width={290} height={77} text="Add White List" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Box Info</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Set Box Info" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Base URL</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Set Base URL" variant="blue" />
             </div>
             
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Limit box</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Set Limit Box" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Time</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Set Time" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Active Time</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Set Active Time" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Withdraw</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Withdraw" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Withdraw All</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
-            </div>
-          </div>
-        </div>
-        <div className="admin-main__row">
-          <div className="admin-main__block-input_group">
-            <p className="admin-main__block-input_group--title">NFT Bottle</p>
-            
-            <p className="admin-main__block-input_group--label">White List</p>
-            <div className="admin-main__block-input_group--inp-block">
-              <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
-            </div>
-
-            <p className="admin-main__block-input_group--label">White List</p>
-            <div className="admin-main__block-input_group--inp-block">
-              <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
-            </div>
-
-            <p className="admin-main__block-input_group--label">White List</p>
-            <div className="admin-main__block-input_group--inp-block">
-              <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Withdraw All" variant="blue" />
             </div>
           </div>
           <div className="admin-main__block-input_group">
             <p className="admin-main__block-input_group--title">Staking</p>
             
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Staking Time</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Set Staking Time" variant="blue" />
+            </div>
+          </div>
+        </div>
+
+        <div className="admin-main__row">
+          <div className="admin-main__block-input_group">
+            <p className="admin-main__block-input_group--title">NFT Bottle</p>
+            
+            <p className="admin-main__block-input_group--label">Type Bottle Max Volume</p>
+            <div className="admin-main__block-input_group--inp-block">
+              <Input width={380} height={77} />
+              <Button width={290} height={77} text="Set Type Bottle MV" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Type Bottle ABV</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Set Type Bottle ABV" variant="blue" />
             </div>
+          </div>
+    
+          <div className="admin-main__block-input_group">
+          <p className="admin-main__block-input_group--title">Lottery</p>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Winner Wp</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Calc Winner Wp" variant="blue" />
             </div>
             
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Winners Beer</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Calc Winners Beer" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Winners Wine</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Calc Winners Wine" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Winners Rum</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Calc Winners Rum" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Amount Beer</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Set Amount Beer" variant="blue" />
             </div>
 
-            <p className="admin-main__block-input_group--label">White List</p>
+            <p className="admin-main__block-input_group--label">Amount Wine</p>
             <div className="admin-main__block-input_group--inp-block">
               <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Button width={290} height={77} text="Set Amount Wine" variant="blue" />
+            </div>
+
+            <p className="admin-main__block-input_group--label">Amount Rum</p>
+            <div className="admin-main__block-input_group--inp-block">
+              <Input width={380} height={77} />
+              <Button width={290} height={77} text="Set Amount Run" variant="blue" />
+            </div>
+
+            <p className="admin-main__block-input_group--label">Amount Wp</p>
+            <div className="admin-main__block-input_group--inp-block">
+              <Input width={380} height={77} />
+              <Button width={290} height={77} text="Set Amount Wp" variant="blue" />
             </div>
           </div>
         </div>
