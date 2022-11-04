@@ -8,6 +8,87 @@ $main-blue: #1EDECB;
 //   src: url("./assets/RobotoFlex-VariableFont_GRAD\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf") format("woff2");
 // }
 
+.header__main-nav {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10%;
+
+  a, p {
+    margin: 0;
+  }
+}
+
+.header__main-logo {
+  width: 150px;
+  height: 150px;
+  transform: translateX(-10%);
+  left: 50%;
+}
+
+.buttons {
+  display: flex;
+
+  button {
+    color: #FFF;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    border: none;
+    padding: 8px 16px !important;
+    margin-right: 24px;
+
+    &.active {
+      outline: 3px solid #FFF;
+    }
+  }
+}
+
+.chests-block {
+  margin-top: 40px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 10%;
+}
+
+.chest-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 25%;
+
+  &--img {
+    width: 100%;
+  }
+
+  &:nth-child(2) {
+    margin-top: 50px;
+  }
+
+  .main-btn {
+    font-size: 14px !important;
+  }
+  
+  .sub-text {
+    font-size: 16px;
+    margin: 0;
+    color: #FFF;
+    z-index: 100000;
+  }
+
+  .btn-group {
+    width: 100% !important;
+  }
+}
+
 html, body, .App, #root {
   overflow-x: hidden;
   overflow-y: auto;

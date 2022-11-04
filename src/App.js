@@ -15,6 +15,9 @@ import { Main } from './routes/Main';
 import { Staking } from './routes/Staking';
 import { Link } from "react-router-dom";
 import { Admin } from './routes/Admin/Admin';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { initContracts } from './store';
 
 const injected = injectedModule()
 
@@ -47,8 +50,16 @@ export const CoinbaseWallet = new WalletLinkConnector({
 });
 
 function App() {
+  const dispatch = useDispatch();
+
   const { active, activate, deactivate, library, chainId, account } = useWeb3React();
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
+
+  useEffect(() => {
+    if (!active) {
+      dispatch(initContracts())
+    }
+  }, [active, activate, dispatch])
 
   return (
     <div className="App">
