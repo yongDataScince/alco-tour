@@ -54,7 +54,7 @@ export const Main = () => {
             </div>
           </div>
           ) : (
-            <NftPop />
+            <NftPop onClose={() => setIsActive(true)} />
           )
         }
       <Bottles />
