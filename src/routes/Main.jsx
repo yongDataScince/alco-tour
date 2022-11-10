@@ -5,11 +5,13 @@ import chest from "../assets/chest.png";
 import Button from "../components/UI/Button";
 import { Paper } from "../components/Paper/Paper"
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { buyBox } from "../store";
+import NftPop from "../components/NftPop";
 
 export const Main = () => {
   const [isActive, setIsActive] = useState(true);
+  const { prices } = useSelector((state) => state.contracts);
   const dispatch = useDispatch()
 
   return (
@@ -29,43 +31,30 @@ export const Main = () => {
             <div className="chest-box">
               <img className="chest-box--img" src={chest} alt="" />
               <Button text="Buy Rum Box" variant="blue" height={100} width={230} onClick={() => {
-                dispatch(buyBox({ boxType: 1, price: '2.25' }))
+                dispatch(buyBox({ boxType: 1, price: prices.rumPrice }))
               }} />
-              <button className="buy-btn">2,25 ETH</button>
+              <button className="buy-btn">{prices.rumPrice} ETH</button>
               <p className="sub-text">The amount on sale: XX</p>
             </div>
             <div className="chest-box">
               <img className="chest-box--img" src={chest} alt="" />
               <Button text="Buy Wine Box" variant="blue" height={100} width={230} onClick={() => {
-                dispatch(buyBox({ boxType: 2, price: '2.25' }))
+                dispatch(buyBox({ boxType: 2, price: prices.winePrice }))
               }} />
-              <button className="buy-btn">2,25 ETH</button>
+              <button className="buy-btn">{prices.winePrice} ETH</button>
               <p className="sub-text">The amount on sale: XX</p>
             </div>
             <div className="chest-box">
               <img className="chest-box--img" src={chest} alt="" />
               <Button text="Buy Beer Box" variant="blue" height={100} width={230} onClick={() => {
-                dispatch(buyBox({ boxType: 3, price: '2.25' }))
+                dispatch(buyBox({ boxType: 3, price: prices.beerPrice }))
               }} />
-              <button className="buy-btn">2,25 ETH</button>
+              <button className="buy-btn">{prices.beerPrice} ETH</button>
               <p className="sub-text">The amount on sale: XX</p>
             </div>
           </div>
           ) : (
-            <div className="header__main--self-collection">
-              <div className="nft-card">
-                <img src={card} alt="" />
-                <p className="nft-card--title">Beer #0299</p>
-              </div>
-              <div className="nft-card">
-                <img src={card} alt="" />
-                <p className="nft-card--title">Beer #0299</p>
-              </div>
-              <div className="nft-card">
-                <img src={card} alt="" />
-                <p className="nft-card--title">Beer #0299</p>
-              </div>
-            </div>
+            <NftPop />
           )
         }
       <Bottles />

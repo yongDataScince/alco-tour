@@ -6,8 +6,14 @@ import BottleStaking from "../assets/abi/BottleStaking.json"
 import Lottery from "../assets/abi/Lottery.json"
 
 const initialContractsState = {
+  isAdmin: false,
   provider: null,
   connected: false,
+  prices: {
+    rumPrice: '0.0',
+    winePrice: '0.0',
+    beerPrice: '0.0'
+  },
   accounts: [],
   nftBoxContract: undefined,
   nftBottleContract: undefined,
@@ -19,21 +25,42 @@ export const initContracts = createAsyncThunk("contracts/init-contracts", async 
   let provider = new ethers.providers.Web3Provider(prv)
   const signer = provider.getSigner();
 
-  const nftBoxContract = new ethers.Contract('0x1E53d88f5599D6E297306C645Af00179183e7E64', NFTBox.abi, signer)
-  const nftBottleContract = new ethers.Contract('0xa30a01083d91Ca190870BeC5F063da1560389F71', NFTBottle.abi, signer)
-  const bottleStakingContract = new ethers.Contract('0x4bccb5A735DBb06C187d011ADF82f4109D85692e', BottleStaking.abi, signer)
-  const lotteryContract = new ethers.Contract('0x7Ac5b0cbf28E5CD820ADcB68abAFC50C4249998A', Lottery.abi, signer)
+  const nftBoxContract = new ethers.Contract('0x6c9555AbAED8BAB65e844B661e2c49d97f0E26ba', NFTBox.abi, signer)
+  const nftBottleContract = new ethers.Contract('0xC6Ed53E4E65267ac0ad91Df40FEF5680f2C91f91', NFTBottle.abi, signer)
+  const bottleStakingContract = new ethers.Contract('0x9B33b710046aD4AD89fd40C6b88DbDb929c78521', BottleStaking.abi, signer)
+  const lotteryContract = new ethers.Contract('0x174305fC184D4b0a77e7A1C1105990C6b87d3211', Lottery.abi, signer)
 
-  await nftBoxContract.attach("0x1E53d88f5599D6E297306C645Af00179183e7E64")
-  await nftBottleContract.attach("0xa30a01083d91Ca190870BeC5F063da1560389F71")
-  await bottleStakingContract.attach("0x4bccb5A735DBb06C187d011ADF82f4109D85692e")
-  await lotteryContract.attach("0x7Ac5b0cbf28E5CD820ADcB68abAFC50C4249998A")
+  await nftBoxContract.attach("0x6c9555AbAED8BAB65e844B661e2c49d97f0E26ba")
+  await nftBottleContract.attach("0xC6Ed53E4E65267ac0ad91Df40FEF5680f2C91f91")
+  await bottleStakingContract.attach("0x9B33b710046aD4AD89fd40C6b88DbDb929c78521")
+  await lotteryContract.attach("0x174305fC184D4b0a77e7A1C1105990C6b87d3211")
 
+  const signerAddr = await signer.getAddress()
 
-  const res = await nftBoxContract.name();
-  console.log(res);
+  const boxOwner = await nftBoxContract.owner();
+  const bottleOwner = await nftBottleContract.owner();
+  const stakingOwner = await bottleStakingContract.owner();
+  const lotteryOwner = await lotteryContract.owner();
+
+  let rumPrice = ethers.utils.formatEther((await nftBoxContract.nftBoxes(1)).salePrice);
+  let winePrice = ethers.utils.formatEther((await nftBoxContract.nftBoxes(2)).salePrice);
+  let beerPrice = ethers.utils.formatEther((await nftBoxContract.nftBoxes(3)).salePrice);
+
+  if (rumPrice === '0.0' || winePrice === '0.0' || beerPrice === '0.0') {
+    rumPrice = ethers.utils.formatEther((await nftBoxContract.nftBoxes(1)).presalePrice);
+    winePrice = ethers.utils.formatEther((await nftBoxContract.nftBoxes(2)).presalePrice);
+    beerPrice = ethers.utils.formatEther((await nftBoxContract.nftBoxes(3)).presalePrice);
+  }
+
+  console.log(rumPrice, winePrice, beerPrice);
 
   return {
+    isAdmin: boxOwner === signerAddr && bottleOwner === signerAddr && stakingOwner === signerAddr && lotteryOwner === signerAddr,
+    prices: {
+      rumPrice,
+      winePrice,
+      beerPrice
+    },
     nftBoxContract,
     nftBottleContract,
     bottleStakingContract,
@@ -42,8 +69,17 @@ export const initContracts = createAsyncThunk("contracts/init-contracts", async 
   }
 })
 
+export const adminFunction = createAsyncThunk('contracts/admin-func', async ({ method, contract, args }, { getState }) => {
+  let { contracts } = getState();
+
+  let currentContract = contracts[contract];
+
+  const tx = await currentContract[method](...args);
+  await tx.wait();
+})
+
 export const buyBox = createAsyncThunk("contracts/buy-box", async ({ boxType, price }, { getState }) => {
-  let { contracts } = getState()
+  let { contracts, prices } = getState()
 
   let numType;
 
@@ -63,13 +99,15 @@ export const buyBox = createAsyncThunk("contracts/buy-box", async ({ boxType, pr
     }
   }
 
-  await contracts.nftBoxContract.buyBox(1, numType, { value: ethers.utils.parseEther(price) })
+  const tx = await contracts.nftBoxContract.buyBox(1, numType, { value: ethers.utils.parseEther(price) })
+  await tx.wait();
 })
 
 export const openBox = createAsyncThunk("contracts/open-box", async (boxType, { getState }) => {
   let { contracts } = getState()
   
-  await contracts.nftBottleContract.openBox(boxType)
+  const tx = await contracts.nftBottleContract.openBox(boxType)
+  await tx.wait();
 })
 
 export const contractsSlice = createSlice({
@@ -77,27 +115,31 @@ export const contractsSlice = createSlice({
   initialState: initialContractsState,
   extraReducers: (builder) => {
     builder.addCase(initContracts.fulfilled, (state, { payload }) => {
+      state.prices = payload.prices;
       state.connected = true;
+      state.isAdmin = payload.isAdmin;
       state.provider = payload.provider;
       state.bottleStakingContract = payload.bottleStakingContract;
       state.nftBottleContract = payload.nftBottleContract;
       state.lotteryContract = payload.lotteryContract;
       state.nftBoxContract = payload.nftBoxContract;
     })
-
     builder.addCase(initContracts.rejected, (state, { error }) => {
       console.log(error);
     })
 
     builder.addCase(buyBox.fulfilled, () => {})
-
     builder.addCase(buyBox.rejected, (_s, { error }) => {
       console.log(error);
     })
 
     builder.addCase(openBox.fulfilled, () => {})
-
     builder.addCase(openBox.rejected, (_s, { error }) => {
+      console.log(error);
+    })
+
+    builder.addCase(adminFunction.fulfilled, () => {})
+    builder.addCase(adminFunction.rejected, (_s, { error }) => {
       console.log(error);
     })
   }

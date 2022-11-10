@@ -1,0 +1,1 @@
+export { NftPop as default } from "./NftPop.jsx"

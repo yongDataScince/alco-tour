@@ -1,0 +1,105 @@
+.nft-pop-main {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding-top: 5%;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__item {
+    position: relative;
+    width: 60%;
+    background-image: url("../../assets/nft-bg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &--content {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 10% 0;
+      padding-bottom: 20%;
+
+      &-img-container {
+        width: 45%;
+        background: rgba(255, 240, 186, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: inset 0px 4px 16px rgba(252, 230, 153, 0.19);
+        backdrop-filter: blur(30px);
+        margin-top: 40px;
+        height: 100%;
+        border-radius: 2vw;
+        padding: 30px 30px 40px 30px;
+
+        .nft-img {
+          border-radius: 2vw;
+          width: 100%;
+          height: auto;
+          margin-bottom: 20px;
+        }
+
+        .nft-title {
+          font-family: 'Roboto Flex';
+          font-style: normal;
+          font-weight: 881;
+          font-size: 2vw;
+          line-height: 110%;
+          color: #FFFFFF;
+        }
+      }
+
+      .title {
+        font-size: 4vw;
+        margin: 0;
+        font-family: 'Roboto Flex';
+        font-style: normal;
+        font-weight: 881;
+        line-height: 100%;
+        text-align: center;
+        color: #1A1A1A;
+        font-stretch: 110;
+        margin-bottom: 2%;
+      }
+
+      .sub-title {
+        font-size: 2vw;
+        margin: 0;
+        font-family: 'Roboto Flex';
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        text-align: center;
+        color: #1A1A1A;
+        font-stretch: 110;
+      }
+    }
+
+    .close {
+      position: absolute;
+      top: 4%;
+      right: 4%;
+      height: 24px;
+      width: 24px;
+      background: #000;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+  }
+}
+

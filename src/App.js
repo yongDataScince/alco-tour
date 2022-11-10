@@ -14,7 +14,7 @@ import { ConnectBtn } from './components/ConnectBtn/ConnectBtn';
 import { useSelector } from 'react-redux';
 
 function App() {
-  const { connected } = useSelector((state) => state.contracts)
+  const { connected, isAdmin } = useSelector((state) => state.contracts)
   return (
     <div className="App">
       <Router>
@@ -23,6 +23,7 @@ function App() {
           <img src={logo} className="header__main-logo" alt="" />
           <p className="header__main-text font-16-p">
             <Link to="/staking">Staking</Link>
+            { isAdmin && <Link to="/admin">Admin</Link> }
           </p>
         </header>
         <Routes>

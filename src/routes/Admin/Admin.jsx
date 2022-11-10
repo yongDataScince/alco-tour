@@ -2,8 +2,32 @@ import Input from "../../components/UI/Input"
 import Button from "../../components/UI/Button"
 
 import "./styles.scss"
+import { useDispatch, useSelector } from "react-redux"
+import { adminFunction } from "../../store"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 export const Admin = () => {
+  const dispatch = useDispatch();
+  const { isAdmin } = useSelector((state) => state.contracts);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(isAdmin);
+    if (!isAdmin) navigate('/')
+  }, [isAdmin, navigate])
+
+  const [values, setValues] = useState({
+    whiteList: '',
+    boxInfo: '',
+    baseUri: '',
+    limitBox: '',
+    boxTime: '',
+    boxActiveTime: '',
+    withdrawAddr: '',
+  });
+
   return (
     <div className="admin-main">
       <p className="admin-main__text">Always Remember the Secret Rule#77 of the Pirate Codex</p>
@@ -15,8 +39,13 @@ export const Admin = () => {
             
             <p className="admin-main__block-input_group--label">White List</p>
             <div className="admin-main__block-input_group--inp-block">
-              <Input width={380} height={77} />
-              <Button width={290} height={77} text="Add White List" variant="blue" />
+              <Input width={380} height={77} onChange={(e) => setValues({
+                ...values,
+                whiteList: [[e.target.value.replace(' ', '').split(',')]]
+              })} value={values.whiteList} />
+              <Button width={290} height={77} text="Add White List" variant="blue" onClick={() => {
+                dispatch(adminFunction({ method: 'addWhitelist', contract: 'nftBoxContract', args: values.whiteList }))
+              }} />
             </div>
 
             <p className="admin-main__block-input_group--label">Box Info</p>

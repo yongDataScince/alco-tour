@@ -7,6 +7,15 @@ $main-blue: #1EDECB;
 //   font-family: "Roboto Flex";
 //   src: url("./assets/RobotoFlex-VariableFont_GRAD\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf") format("woff2");
 // }
+.header__main-text {
+  a {
+    margin-right: 16px !important;
+
+    &:last-child {
+      margin: 0 !important;
+    }
+  }
+}
 
 .header__main-nav {
   width: 100vw;
