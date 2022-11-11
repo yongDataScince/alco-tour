@@ -49,9 +49,14 @@ export const Admin = () => {
             </div>
 
             <p className="admin-main__block-input_group--label">Box Info</p>
-            <div className="admin-main__block-input_group--inp-block">
-              <Input width={380} height={77} />
-              <Button width={290} height={77} text="Set Box Info" variant="blue" />
+            <div className="admin-main__block-input_group--inp-block column">
+              <div className="multy-inputs">
+                <Input width={380} height={77} />
+                <Input width={380} height={77} />
+                <Input width={380} height={77} />
+                <Input width={380} height={77} />
+              </div>
+              <Button width={290} height={77} text="Set Box Info" variant="blue" className="mlt-btn" />
             </div>
 
             <p className="admin-main__block-input_group--label">Base URL</p>

@@ -1,3 +1,8 @@
+.multy-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
 .admin-main {
   width: 100vw;
   min-height: 100vh;
@@ -90,6 +95,14 @@
         width: 100%;
         display: flex;
         margin-bottom: 30px;
+
+        &.column {
+          flex-direction: column;
+        }
+        .mlt-btn {
+          margin-top: 20px;
+          margin-left: -20px;
+        }
       }
     }
   }
