@@ -30,7 +30,7 @@ export const Main = () => {
             <div className="chests-block">
             <div className="chest-box">
               <img className="chest-box--img" src={chest} alt="" />
-              <Button text="Buy Rum Box" variant="blue" height={100} width={230} onClick={() => {
+              <Button text="Buy Rum Box" className="buy-nft-btn" variant="blue" height={100} width={230} onClick={() => {
                 dispatch(buyBox({ boxType: 1, price: prices.rumPrice }))
               }} />
               <button className="buy-btn">{prices.rumPrice} ETH</button>
@@ -38,7 +38,7 @@ export const Main = () => {
             </div>
             <div className="chest-box">
               <img className="chest-box--img" src={chest} alt="" />
-              <Button text="Buy Wine Box" variant="blue" height={100} width={230} onClick={() => {
+              <Button text="Buy Wine Box" className="buy-nft-btn" variant="blue" height={100} width={230} onClick={() => {
                 dispatch(buyBox({ boxType: 2, price: prices.winePrice }))
               }} />
               <button className="buy-btn">{prices.winePrice} ETH</button>
@@ -46,7 +46,7 @@ export const Main = () => {
             </div>
             <div className="chest-box">
               <img className="chest-box--img" src={chest} alt="" />
-              <Button text="Buy Beer Box" variant="blue" height={100} width={230} onClick={() => {
+              <Button text="Buy Beer Box" className="buy-nft-btn" variant="blue" height={100} width={230} onClick={() => {
                 dispatch(buyBox({ boxType: 3, price: prices.beerPrice }))
               }} />
               <button className="buy-btn">{prices.beerPrice} ETH</button>

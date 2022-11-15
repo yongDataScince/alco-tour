@@ -19,6 +19,7 @@ $main-blue: #1EDECB;
   align-items: center;
   justify-content: space-between;
   padding: 10px 10%;
+  margin-bottom: 100px;
 
   a, p {
     margin: 0;
@@ -33,7 +34,8 @@ $main-blue: #1EDECB;
     font-stretch: 110;
   }
 
-  .main-btn {
+  .connect-btn{
+    font-size: 1.3vw !important;
     padding-top: 25px !important;
     transform: translateY(-20px);
   }
@@ -110,10 +112,6 @@ $main-blue: #1EDECB;
     margin-top: 50px;
   }
 
-  .main-btn {
-    font-size: 14px !important;
-  }
-  
   .sub-text {
     font-size: 16px;
     margin: 0;
@@ -143,14 +141,22 @@ html, body, .App, #root {
   align-items: center;
   
   .lottery {
-    width: 33% !important;
-    font-size: 24px !important;
+    // height: 100% !important;
+    margin-top: 4vh;
+    width: 30% !important;
+    font-size: 2.1vw !important;
+    padding-top: 0.1vw !important;
   }
 }
 
 * {
   box-sizing: border-box;
   font-family: 'Roboto Flex';
+}
+
+.buy-nft-btn {
+  font-size: 1.4vw !important;
+  padding-top: 1vw !important;
 }
 
 .staking {

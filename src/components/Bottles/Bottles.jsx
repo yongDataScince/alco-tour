@@ -11,19 +11,19 @@ export const Bottles = () => {
     <div className="bottles__main">
       <div className="bottles__main-box">
         <img src={chest} alt="" />
-        <Button text="Open Rum Box" width="100%" height={70} variant="blue" onClick={() => {
+        <Button text="Open Rum Box" width="80%" height={70} variant="blue" onClick={() => {
           dispatch(openBox(1))
         }} />
       </div>
       <div className="bottles__main-box">
         <img src={chest} alt="" />
-        <Button text="Open Rum Box" width="100%" height={70} variant="blue" onClick={() => {
+        <Button text="Open Rum Box" width="80%" height={70} variant="blue" onClick={() => {
           dispatch(openBox(2))
         }} />
       </div>
       <div className="bottles__main-box">
         <img src={chest} alt="" />
-        <Button text="Open Rum Box" width="100%" height={70} variant="blue" onClick={() => {
+        <Button text="Open Rum Box" width="80%" height={70} variant="blue" onClick={() => {
           dispatch(openBox(3))
         }} />
       </div>

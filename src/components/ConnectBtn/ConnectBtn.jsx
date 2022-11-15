@@ -33,5 +33,5 @@ export const ConnectBtn = () => {
     dispatch(initContracts(provider))
   }
 
-  return <Button onClick={connectWallet} text="Connect wallet" width={200} />
+  return <Button onClick={connectWallet} className="connect-btn" text="Connect wallet" width={200} />
 }

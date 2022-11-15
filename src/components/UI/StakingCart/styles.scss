@@ -41,17 +41,14 @@
   }
 
   &__btn {
-    width: 50%;
+    padding-top: 0 !important;
+    padding-bottom: 2%;
+    margin-top: 2%;
+    font-size: 2.2vw !important;
+    width: 120% !important;
     height: 70px;
     background: none;
     border: none;
     background-size: contain;
-    background: rgb(255, 241, 93);
-    margin-right: 16px;
-
-    &.blue {
-      background: rgb(92, 181, 254);
-      margin-right: 0;  
-    }
   }
 }

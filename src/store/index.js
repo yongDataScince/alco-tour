@@ -79,7 +79,7 @@ export const adminFunction = createAsyncThunk('contracts/admin-func', async ({ m
 })
 
 export const buyBox = createAsyncThunk("contracts/buy-box", async ({ boxType, price }, { getState }) => {
-  let { contracts, prices } = getState()
+  let { contracts } = getState()
 
   let numType;
 
