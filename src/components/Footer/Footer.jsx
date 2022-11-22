@@ -1,6 +1,7 @@
 import Twitter from "../../assets/twitter.svg"
 import Telegram from "../../assets/telegram.svg"
 import Reddit from "../../assets/reddit.svg"
+import Mail from "../../assets/mail.svg"
 import "./styles.scss"
 
 export const Footer = () => {
@@ -28,6 +29,10 @@ export const Footer = () => {
         <div className="text">Privacy Policy</div>
         <div className="text">Terms of Use</div>
         <div className="text">All Rights Reserved</div>
+        <div className="text text__mail">
+            <img src={Mail} alt="mail" className="sub-inf__img"/>
+            info@alcotrip.games
+        </div>
       </div>
     </div>
   )

@@ -1,6 +1,5 @@
 import { Bottles } from "../components/Bottles/Bottles"
 import cn from "classnames";
-import card from "../assets/card.png"
 import chest from "../assets/chest.png";
 import Button from "../components/UI/Button";
 import { Paper } from "../components/Paper/Paper"
@@ -16,6 +15,9 @@ export const Main = () => {
 
   return (
     <>
+        <div className="main-page__title">
+            Be ready to Drink and Earn!
+        </div>
       <div className="buttons">
           <button className={cn("font-24", {
             active: isActive

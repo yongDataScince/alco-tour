@@ -8,8 +8,11 @@ export const Button = ({ className, text, variant, width, onClick }) => {
         "yellow": !variant || variant === "yellow",
         "blue": variant === "blue"
       })
-    } style={{ width }} onClick={onClick}>
-      {text}
+    } onClick={onClick}>
+        <div className="btn_text">
+            {text}
+        </div>
+
     </button>
   )
 }
