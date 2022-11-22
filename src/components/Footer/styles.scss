@@ -71,6 +71,14 @@
         height: 100px;
         margin-right: 20px;
       }
+      img{
+        width: 46px;
+        height: 46px;
+        @media (max-width: 500px) {
+          width: 40px;
+          height: 40px;
+        }
+      }
     }
   }
   .sub-info {
@@ -99,6 +107,7 @@
       font-weight: 881;
       line-height: 19px;
       cursor: pointer;
+      text-align: center;
       @media (max-width: 815px) {
         flex: 0 0 50%;
         margin-bottom: 20px;
@@ -111,6 +120,7 @@
     .text__mail{
       display: flex;
       align-items: center;
+      justify-content: center;
       .sub-inf__img{
         margin-right: 10px;
       }

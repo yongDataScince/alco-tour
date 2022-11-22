@@ -16,18 +16,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (min-width: 500px) {
+      padding-top: 200px;
+    }
   }
 
   &__item {
     position: relative;
+    margin: 0 10%;
     margin-top: 30px;
-    width: 55vw;
+    width: 100%;
     background-image: url("../../assets/nft-bg.png");
-    background-size: 100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    &:first-child {
-      margin-top: 170%;
-    }
+    max-width: 800px;
 
     &:last-child {
       margin-top: 0 !important;
@@ -43,7 +45,6 @@
       justify-content: flex-start;
       padding: 10% 0;
       padding-bottom: 20%;
-
       &-img-container {
         width: 45%;
         background: rgba(255, 240, 186, 0.3);
@@ -73,7 +74,7 @@
       }
 
       .title {
-        font-size: 4vw;
+        font-size: 50px;
         margin: 0;
         font-family: 'Roboto Flex';
         font-style: normal;
@@ -82,10 +83,13 @@
         text-align: center;
         color: #1A1A1A;
         margin-bottom: 2%;
+        @media (max-width: 470px) {
+          font-size: 35px;
+        }
       }
 
       .sub-title {
-        font-size: 2vw;
+        font-size: 30px;
         margin: 0;
         font-family: 'Roboto Flex';
         font-style: normal;
@@ -93,6 +97,9 @@
         line-height: 100%;
         text-align: center;
         color: #1A1A1A;
+        @media (max-width: 470px) {
+          font-size: 22px;
+        }
       }
     }
 
