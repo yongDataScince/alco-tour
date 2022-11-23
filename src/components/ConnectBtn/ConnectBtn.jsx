@@ -2,11 +2,13 @@ import Web3Modal from 'web3modal'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { initContracts } from '../../store';
+import { disconnect, initContracts } from '../../store';
 import Button from '../UI/Button';
 
 export const ConnectBtn = () => {
+  const [connected, setConnected] = useState(false)
   const [web3Modal, setWeb3Modal] = useState(null)
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +33,14 @@ export const ConnectBtn = () => {
   async function connectWallet() {
     const provider = await web3Modal.connect();
     dispatch(initContracts(provider))
+    setConnected(true)
   }
 
-  return <Button onClick={connectWallet} className="connect-btn" text="Connect wallet" width={200} />
+  async function disconnectWallet() {
+    await web3Modal.clearCachedProvider();
+    dispatch(disconnect())
+    setConnected(false)
+  }
+
+  return <Button onClick={connected ? disconnectWallet :connectWallet} className="connect-btn" text={connected ? "Disconnect wallet" : "Connect wallet"} width={200} />
 }

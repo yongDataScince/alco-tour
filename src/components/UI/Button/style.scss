@@ -10,6 +10,7 @@
 	display: inline-block;
   border: none;
   background-size: contain !important;
+  transition: all 0.1s;
 
   &.yellow {
     color: #221D1A !important;
@@ -18,6 +19,10 @@
   &.blue {
     color: #FFF;
 	  background: url("../../../assets/button2.png") bottom center no-repeat;
+  }
+
+  &:active {
+    transform: scale(0.9);
   }
 }
 

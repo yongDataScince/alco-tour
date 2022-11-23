@@ -1,4 +1,4 @@
-import { configureStore, createSlice, createAsyncThunk, combineReducers } from '@reduxjs/toolkit'
+import { configureStore, createSlice, createAsyncThunk, combineReducers, isPending, isFulfilled, isRejected } from '@reduxjs/toolkit'
 import { ethers } from 'ethers'
 import NFTBox from "../assets/abi/NFTBox.json"
 import NFTBottle from "../assets/abi/NFTBottle.json"
@@ -6,9 +6,13 @@ import BottleStaking from "../assets/abi/BottleStaking.json"
 import Lottery from "../assets/abi/Lottery.json"
 
 const initialContractsState = {
+  loading: false,
   isAdmin: false,
   provider: null,
+  signerAddr: '',
   connected: false,
+  activePreSale: false,
+  activeSale: false,
   prices: {
     rumPrice: '0.0',
     winePrice: '0.0',
@@ -20,6 +24,8 @@ const initialContractsState = {
   bottleStakingContract: undefined,
   lotteryContract: undefined
 }
+
+export const disconnect = createAsyncThunk("contracts/disconnect", async () => {})
 
 export const initContracts = createAsyncThunk("contracts/init-contracts", async (prv) => {
   let provider = new ethers.providers.Web3Provider(prv)
@@ -52,10 +58,15 @@ export const initContracts = createAsyncThunk("contracts/init-contracts", async 
     beerPrice = ethers.utils.formatEther((await nftBoxContract.nftBoxes(3)).presalePrice);
   }
 
-  console.log(rumPrice, winePrice, beerPrice);
+  let activeSale = await nftBoxContract.activeSaleTime();
+  let activePreSale = await nftBoxContract.activePresaleTime();
+
 
   return {
     isAdmin: boxOwner === signerAddr && bottleOwner === signerAddr && stakingOwner === signerAddr && lotteryOwner === signerAddr,
+    signerAddr,
+    activePreSale,
+    activeSale,
     prices: {
       rumPrice,
       winePrice,
@@ -76,30 +87,22 @@ export const adminFunction = createAsyncThunk('contracts/admin-func', async ({ m
 
   const tx = await currentContract[method](...args);
   await tx.wait();
+
+  if (method === 'setActiveTime') {
+    let activeSale = await currentContract.activeSaleTime();
+    let activePreSale = await currentContract.activePresaleTime();
+    
+    return {
+      activeSale,
+      activePreSale
+    }
+  }
 })
 
 export const buyBox = createAsyncThunk("contracts/buy-box", async ({ boxType, price }, { getState }) => {
   let { contracts } = getState()
 
-  let numType;
-
-  switch (boxType) {
-    case 'rum': {
-      numType = 1;
-      break;
-    }
-
-    case 'wine': {
-      numType = 2;
-      break;
-    }
-
-    default: {
-      numType = 3;
-    }
-  }
-
-  const tx = await contracts.nftBoxContract.buyBox(1, numType, { value: ethers.utils.parseEther(price) })
+  const tx = await contracts.nftBoxContract.buyBox(1, boxType, { value: ethers.utils.parseEther(price) })
   await tx.wait();
 })
 
@@ -110,11 +113,28 @@ export const openBox = createAsyncThunk("contracts/open-box", async (boxType, { 
   await tx.wait();
 })
 
+export const getSelfNFTs = createAsyncThunk('contracts/get-nft', async (_, { getState }) => {
+  let { contracts, signerAddr } = getState()
+  
+  const boxNft = contracts.nftBoxContract
+  const bottleNft = contracts.nftBottleContract
+  
+  const transferFilter = boxNft.filters.BuyBox(null, null)
+
+  console.log(transferFilter);
+
+  const boxTokens = await boxNft.queryFilter(transferFilter)
+  console.log(boxTokens);
+})
+
 export const contractsSlice = createSlice({
   name: 'contracts',
   initialState: initialContractsState,
   extraReducers: (builder) => {
     builder.addCase(initContracts.fulfilled, (state, { payload }) => {
+      state.signerAddr = payload.signerAddr;
+      state.activePreSale = payload.activePreSale;
+      state.activeSale = payload.activeSale;
       state.prices = payload.prices;
       state.connected = true;
       state.isAdmin = payload.isAdmin;
@@ -124,6 +144,14 @@ export const contractsSlice = createSlice({
       state.lotteryContract = payload.lotteryContract;
       state.nftBoxContract = payload.nftBoxContract;
     })
+
+    builder.addCase(disconnect.fulfilled, (state) => {
+      state.signerAddr = '';
+      state.connected = false;
+      state.isAdmin = false;
+      state.provider = null;
+    })
+
     builder.addCase(initContracts.rejected, (state, { error }) => {
       console.log(error);
     })
@@ -138,9 +166,26 @@ export const contractsSlice = createSlice({
       console.log(error);
     })
 
-    builder.addCase(adminFunction.fulfilled, () => {})
+    builder.addCase(adminFunction.fulfilled, (state, { payload }) => {
+      state.activeSale = payload.activeSale;
+      state.activePreSale = payload.activePreSale;
+    })
     builder.addCase(adminFunction.rejected, (_s, { error }) => {
       console.log(error);
+    })
+
+    builder.addMatcher(isPending, (state, action) => {
+      state.loading = true
+      console.log(action);
+    })
+
+    builder.addMatcher(isFulfilled, (state, action) => {
+      state.loading = false
+      console.log(action);
+    })
+
+    builder.addMatcher(isRejected, (state) => {
+      state.loading = false
     })
   }
 })

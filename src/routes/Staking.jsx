@@ -6,9 +6,13 @@ export const Staking = () => {
     <div className="staking">
       <h1 className="font-96">Staking</h1>
       <div className="staking__cards-block">
-        <StakingCart src={bg} name="beer" />
-        <StakingCart src={bg} name="wine" />
-        <StakingCart src={bg} name="rum" />
+        <StakingCart src={bg} name="beer" action="stake" />
+        <StakingCart src={bg} name="wine" action="stake"/>
+        <StakingCart src={bg} name="rum" action="stake"/>
+
+        <StakingCart src={bg} name="beer" action="withdraw"/>
+        <StakingCart src={bg} name="wine" action="withdraw"/>
+        <StakingCart src={bg} name="rum" action="withdraw"/>
       </div>
     </div>
   )

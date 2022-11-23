@@ -6,7 +6,7 @@ import Button from "../components/UI/Button";
 import { Paper } from "../components/Paper/Paper"
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { buyBox } from "../store";
+import { buyBox, getSelfNFTs } from "../store";
 import NftPop from "../components/NftPop";
 
 export const Main = () => {
@@ -22,7 +22,10 @@ export const Main = () => {
           })} onClick={() => setIsActive(true)}>Buy NFT</button>
           <button className={cn("font-24", {
             active: !isActive
-          })} onClick={() => setIsActive(false)}>My NFT</button>
+          })} onClick={() => {
+            dispatch(getSelfNFTs())
+            setIsActive(false)
+          }}>My NFT</button>
         </div>
 
         {

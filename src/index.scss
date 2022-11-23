@@ -17,9 +17,10 @@ $main-blue: #1EDECB;
   width: 100vw;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 10%;
+  justify-content: flex-end;
+  padding: 32px 0%;
   margin-bottom: 100px;
+  position: relative;
 
   a, p {
     margin: 0;
@@ -34,10 +35,21 @@ $main-blue: #1EDECB;
     font-stretch: 110;
   }
 
+  .img_link {
+    position: absolute;
+    right: 50%;
+  }
+
+  .hid {
+    display: flex;
+    align-items: center;
+  }
+
   .connect-btn{
-    font-size: 1.3vw !important;
-    padding-top: 25px !important;
-    transform: translateY(-20px);
+    height: 50px !important;
+    font-size: 1vw !important;
+    padding-top: 0vw !important;
+    margin-top: 5px !important;
   }
 
   @media (max-width: 768px) {
@@ -57,7 +69,6 @@ $main-blue: #1EDECB;
 .header__main-logo {
   height: 70px;
   width: 70px;
-  transform: translateX(-100%) !important;
 }
 
 .buttons {
@@ -146,6 +157,24 @@ html, body, .App, #root {
     width: 30% !important;
     font-size: 2.1vw !important;
     padding-top: 0.1vw !important;
+  }
+}
+
+.loading {
+  position: fixed;
+  z-index: 1000000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all 0.3s;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.5);
+  visibility: hidden;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
   }
 }
 

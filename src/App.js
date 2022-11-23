@@ -12,19 +12,27 @@ import { Link } from "react-router-dom";
 import { Admin } from './routes/Admin/Admin';
 import { ConnectBtn } from './components/ConnectBtn/ConnectBtn';
 import { useSelector } from 'react-redux';
+import cn from 'classnames';
 
 function App() {
-  const { connected, isAdmin } = useSelector((state) => state.contracts)
+  const { isAdmin, loading } = useSelector((state) => state.contracts)
   return (
     <div className="App">
+      <div className={cn('loading', {
+        active: loading
+      })} />
       <Router>
         <header className="header__main-nav">
-          <div style={{ opacity: Number(!connected), visibility: !connected ? 'visible' : 'hidden', transition: '0.1s' }}><ConnectBtn /></div>
-          <img src={logo} className="header__main-logo" alt="" />
+          <Link to="/" className='img_link'>
+            <img src={logo} className="header__main-logo" alt="" />
+          </Link>
           <p className="header__main-text font-16-p">
             <Link to="/staking">Staking</Link>
             { isAdmin && <Link to="/admin">Admin</Link> }
           </p>
+          <div className="hid">
+            <ConnectBtn />
+          </div>
         </header>
         <Routes>
           <Route path='/' element={<Main />} />
