@@ -4,14 +4,12 @@
 	line-height: 140%;
 	text-align: center;
 	text-decoration: none;
-	width: 330px;
-	height: 105px;
+   margin-top: 15px;
 	padding-top: 30px;
 	display: inline-block;
-  border: none;
-  background-size: contain !important;
-  transition: all 0.1s;
-
+    border: none;
+    cursor: pointer;
+    background-size: contain !important;
   &.yellow {
     color: #221D1A !important;
 	  background: url("../../../assets/button.png") bottom center no-repeat;
@@ -20,17 +18,21 @@
     color: #FFF;
 	  background: url("../../../assets/button2.png") bottom center no-repeat;
   }
-
-  &:active {
-    transform: scale(0.9);
+  .btn_text{
+    padding: 30px 80px;
+    white-space: nowrap;
+    @media (max-width:780px) {
+      padding: 20px 60px;
+    }
   }
+
 }
 
 .buy-btn {
   margin-top: 20px;
   background: rgba(255, 240, 186, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0px 14px 44px rgba(165, 118, 22, 0.75), inset 0px 4px 16px rgba(252, 230, 153, 0.19);
+  box-shadow: 0 14px 44px rgba(165, 118, 22, 0.75), inset 0 4px 16px rgba(252, 230, 153, 0.19);
   backdrop-filter: blur(30px);
   padding: 14px 30px !important;
   color: #FFFFFF;
@@ -38,6 +40,6 @@
   border-radius: 59px;
   width: 156px;
   height: 51px;
-  font-size: 1.5vw !important;
+  font-size: 20px !important;
   margin-bottom: 15px;
 }

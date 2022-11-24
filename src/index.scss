@@ -17,11 +17,15 @@ $main-blue: #1EDECB;
   width: 100vw;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 32px 0%;
+  justify-content: space-between;
+  padding: 10px 10%;
   margin-bottom: 100px;
-  position: relative;
-
+  @media (max-width: 770px) {
+    margin-bottom: 60px;
+  }
+  @media (max-width: 650px) {
+    padding: 10px;
+  }
   a, p {
     margin: 0;
     color: #FFF !important;
@@ -31,49 +35,51 @@ $main-blue: #1EDECB;
     font-weight: 881;
     font-size: 16px;
     line-height: 19px;
-    color: #FFFFFF;
-    font-stretch: 110;
-  }
-
-  .img_link {
-    position: absolute;
-    right: 50%;
-  }
-
-  .hid {
-    display: flex;
-    align-items: center;
   }
 
   .connect-btn{
-    height: 50px !important;
-    font-size: 1vw !important;
-    padding-top: 0vw !important;
-    margin-top: 5px !important;
-  }
-
-  @media (max-width: 768px) {
-    height: 50px;
-    margin-bottom: 100px;
-    
-    img {
-      width: 15%
-    }
-
-    button {
-      opacity: 0;
+    font-size: 18px !important;
+    transform: translateY(-10px);
+    cursor: pointer;
+    .btn_text{
+      @media (max-width: 440px) {
+        padding: 15px 45px;
+        font-size: 18px;
+      }
     }
   }
+
 }
 
 .header__main-logo {
   height: 70px;
   width: 70px;
+  transform: translateX(-100%) !important;
+  @media (max-width: 550px) {
+    transform: translateX(0) !important;
+  }
+}
+.main-page__title{
+  font-weight: 881;
+  font-size: 96px;
+  color: #FFFFFF;
+  text-align: center;
+  max-width: 986px;
+  margin: 0 10%;
+  margin-bottom: 30px;
+
+  @media (max-width: 770px) {
+    font-size: 75px;
+  }
+  @media (max-width: 480px) {
+    font-size: 35px;
+  }
 }
 
 .buttons {
   display: flex;
-
+  width: 100%;
+  justify-content: center;
   button {
     color: #FFF;
     background: transparent;
@@ -84,15 +90,17 @@ $main-blue: #1EDECB;
     border: none;
     padding: 8px 16px !important;
     margin-right: 24px;
-
+    margin-top: 0;
+    font-size: 22px !important;
+    &:last-child{
+      margin-right: 0;
+    }
     &.active {
       outline: 3px solid #FFF;
     }
-  }
-
-  @media (max-width: 768px) {
-    button {
-      width: 45% !important;
+    @media (max-width: 770px) {
+      flex: 0 0 auto !important;
+      margin-right: 0;
     }
   }
 }
@@ -102,27 +110,45 @@ $main-blue: #1EDECB;
   width: 100%;
   height: auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 0 10%;
+  padding: 0 5%;
+  @media (max-width: 990px) {
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .chest-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  max-width: 25%;
-
+  justify-content: center;
+  flex: 0 0 30%;
   &--img {
     width: 100%;
-  }
+    max-width: 400px;
+    max-height: 300px;
+    @media (max-width: 990px) {
+      max-width: 350px;
 
+    }
+  }
   &:nth-child(2) {
     margin-top: 50px;
   }
-
+  @media (max-width: 1190px) {
+    &:nth-child(2) {
+      margin-top: 0;
+    }
+    flex: 0 0 50%;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 990px) {
+    flex: 0 0 100%;
+    margin-bottom: 40px;
+  }
   .sub-text {
     font-size: 16px;
     margin: 0;
@@ -152,29 +178,9 @@ html, body, .App, #root {
   align-items: center;
   
   .lottery {
-    // height: 100% !important;
     margin-top: 4vh;
-    width: 30% !important;
-    font-size: 2.1vw !important;
+    font-size: 22px !important;
     padding-top: 0.1vw !important;
-  }
-}
-
-.loading {
-  position: fixed;
-  z-index: 1000000;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  transition: all 0.3s;
-  opacity: 0;
-  background: rgba(255, 255, 255, 0.5);
-  visibility: hidden;
-
-  &.active {
-    visibility: visible;
-    opacity: 1;
   }
 }
 
@@ -184,8 +190,7 @@ html, body, .App, #root {
 }
 
 .buy-nft-btn {
-  font-size: 1.4vw !important;
-  padding-top: 1vw !important;
+  font-size: 22px !important;
 }
 
 .staking {
@@ -206,6 +211,7 @@ html, body, .App, #root {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+    margin-right: -30px;
   }
 }
 
@@ -215,6 +221,10 @@ html, body, .App, #root {
   font-weight: 881;
   font-size: 96px;
   line-height: 100%;
+  @media (max-width: 520px) {
+    font-size: 86px;
+    margin: 30px 0 30px 0;
+  }
 }
 
 .font-77 {
@@ -271,20 +281,4 @@ html, body, .App, #root {
   font-weight: 400;
   font-size: 16px;
   line-height: 140%;
-}
-
-.nfts {
-  margin-top: 100px;
-  width: 100vw;
-  padding: 0 10%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 478px;
-  grid-gap: 30px;
-
-  @media (max-width: 768px)  {
-    padding: 0 5%;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 450px;
-  }
 }

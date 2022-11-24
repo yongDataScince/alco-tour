@@ -6,7 +6,6 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
-
   overflow: hidden;
 
   &__container {
@@ -17,18 +16,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (min-width: 500px) {
+      padding-top: 200px;
+    }
   }
 
   &__item {
     position: relative;
-    width: 55vw;
+    margin: 0 10%;
+    margin-top: 30px;
+    width: 100%;
     background-image: url("../../assets/nft-bg.png");
-    background-size: contain;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-
-    &:first-child {
-      margin-top: 170%;
-    }
+    max-width: 800px;
 
     &:last-child {
       margin-top: 0 !important;
@@ -44,12 +45,11 @@
       justify-content: flex-start;
       padding: 10% 0;
       padding-bottom: 20%;
-
       &-img-container {
         width: 45%;
         background: rgba(255, 240, 186, 0.3);
         border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: inset 0px 4px 16px rgba(252, 230, 153, 0.19);
+        box-shadow: inset 0 4px 16px rgba(252, 230, 153, 0.19);
         backdrop-filter: blur(30px);
         margin-top: 5%;
         height: 100%;
@@ -74,7 +74,7 @@
       }
 
       .title {
-        font-size: 4vw;
+        font-size: 50px;
         margin: 0;
         font-family: 'Roboto Flex';
         font-style: normal;
@@ -82,12 +82,14 @@
         line-height: 100%;
         text-align: center;
         color: #1A1A1A;
-        font-stretch: 110;
         margin-bottom: 2%;
+        @media (max-width: 470px) {
+          font-size: 35px;
+        }
       }
 
       .sub-title {
-        font-size: 2vw;
+        font-size: 30px;
         margin: 0;
         font-family: 'Roboto Flex';
         font-style: normal;
@@ -95,7 +97,9 @@
         line-height: 100%;
         text-align: center;
         color: #1A1A1A;
-        font-stretch: 110;
+        @media (max-width: 470px) {
+          font-size: 22px;
+        }
       }
     }
 
@@ -105,8 +109,24 @@
       right: 4%;
       height: 24px;
       width: 24px;
-      background: #000;
       z-index: 1000000;
+      &:before,&:after{
+        content: "";
+        width: 100%;
+        height: 4px;
+        position: absolute;
+        display: block;
+        left: 0;
+        background: black;
+      }
+      &:before{
+        top: 50%;
+        transform: rotate(-45deg);
+      }
+      &:after{
+        top: 50%;
+        transform: rotate(45deg);
+      }
     }
 
     &::after {
