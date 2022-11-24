@@ -38,7 +38,7 @@ function App() {
           <Link to={'/'} className="logo-link"><img src={logo} className="header__main-logo" alt="" /></Link>
           <p className="header__main-text font-16-p">
             <Link to="/staking">Staking</Link>
-            { isAdmin && <Link to="/admin">Admin</Link> }
+            { isAdmin && <Link to="/admin" className='desctop'>Admin</Link> }
             <ConnectBtn res="desctop" />
           </p>
         </header>

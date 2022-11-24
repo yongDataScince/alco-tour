@@ -4,12 +4,18 @@
 	line-height: 140%;
 	text-align: center;
 	text-decoration: none;
-   margin-top: 15px;
+  margin-top: 15px;
 	padding-top: 30px;
 	display: inline-block;
-    border: none;
-    cursor: pointer;
-    background-size: contain !important;
+  border: none;
+  cursor: pointer;
+  background-size: contain !important;
+  transition: all 0.1s;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
   &.yellow {
     color: #221D1A !important;
 	  background: url("../../../assets/button.png") bottom center no-repeat;
@@ -25,7 +31,6 @@
       padding: 20px 60px;
     }
   }
-
 }
 
 .buy-btn {

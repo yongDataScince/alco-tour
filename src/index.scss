@@ -229,6 +229,12 @@ html, body, .App, #root {
   font-family: 'Roboto Flex';
 }
 
+.desctop {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
 .buy-nft-btn {
   font-size: 22px !important;
 }
