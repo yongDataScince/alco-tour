@@ -6,6 +6,7 @@ import { Paper } from "../components/Paper/Paper"
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { buyBox, getSelfNFTs } from "../store";
+import card from "../assets/card.png"
 import NftCard from "../components/NftCard";
 
 export const Main = () => {
@@ -38,7 +39,7 @@ export const Main = () => {
               <Button text="Buy Rum Box" className="buy-nft-btn" variant="blue" height={100} width={230} onClick={() => {
                 dispatch(buyBox({ boxType: 1, price: prices.rumPrice }))
               }} />
-              <button className="buy-btn">{prices.rumPrice} ETH</button>
+              <button className="buy-btn">{prices.rumPrice} USDT</button>
               <p className="sub-text">The amount on sale: XX</p>
             </div>
             <div className="chest-box">
@@ -46,7 +47,7 @@ export const Main = () => {
               <Button text="Buy Wine Box" className="buy-nft-btn" variant="blue" height={100} width={230} onClick={() => {
                 dispatch(buyBox({ boxType: 2, price: prices.winePrice }))
               }} />
-              <button className="buy-btn">{prices.winePrice} ETH</button>
+              <button className="buy-btn">{prices.winePrice} USDT</button>
               <p className="sub-text">The amount on sale: XX</p>
             </div>
             <div className="chest-box">
@@ -54,7 +55,7 @@ export const Main = () => {
               <Button text="Buy Beer Box" className="buy-nft-btn" variant="blue" height={100} width={230} onClick={() => {
                 dispatch(buyBox({ boxType: 3, price: prices.beerPrice }))
               }} />
-              <button className="buy-btn">{prices.beerPrice} ETH</button>
+              <button className="buy-btn">{prices.beerPrice} USDT</button>
               <p className="sub-text">The amount on sale: XX</p>
             </div>
           </div>

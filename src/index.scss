@@ -3,7 +3,14 @@ $text-black: #1F1F1F;
 $main-yellow: #F6D15D;
 $main-blue: #1EDECB;
 
+#WEB3_CONNECT_MODAL_ID {
+  z-index: 100000000000 !important;
+}
+
 .header__main-text {
+  display: flex;
+  align-items: center;
+  margin-right: 10% !important;
   a {
     margin-right: 16px !important;
 
@@ -14,13 +21,15 @@ $main-blue: #1EDECB;
 }
 
 .header__main-nav {
+  padding-top: 20px;
   width: 100vw;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 10%;
+  justify-content: flex-end;
   margin-bottom: 100px;
+  position: relative;
   @media (max-width: 770px) {
+    padding-top: 30px !important;
     margin-bottom: 60px;
   }
   @media (max-width: 650px) {
@@ -41,25 +50,56 @@ $main-blue: #1EDECB;
     font-size: 18px !important;
     transform: translateY(-10px);
     cursor: pointer;
+    height: 50px !important;
+    width: 200px !important;
+    padding: 0 !important;
+    
     .btn_text{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 !important;
+      font-size: 16px;
+
       @media (max-width: 440px) {
         padding: 15px 45px;
         font-size: 18px;
+      }
+    }
+
+    &.mobile {
+      display: none;
+      @media (max-width: 768px) {
+        display: block;
+      }
+    }
+    &.desctop {
+      display: block;
+      @media (max-width: 768px) {
+        display: none;
       }
     }
   }
 
 }
 
+.logo-link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .header__main-logo {
   height: 70px;
   width: 70px;
-  transform: translateX(-100%) !important;
+
   @media (max-width: 550px) {
-    transform: translateX(0) !important;
   }
 }
-.main-page__title{
+
+.main-page__title {
   font-weight: 881;
   font-size: 96px;
   color: #FFFFFF;
@@ -153,7 +193,7 @@ $main-blue: #1EDECB;
     font-size: 16px;
     margin: 0;
     color: #FFF;
-    z-index: 100000;
+    z-index: 500;
   }
 
   .btn-group {
@@ -193,12 +233,31 @@ html, body, .App, #root {
   font-size: 22px !important;
 }
 
+.open-btn {
+  margin-right: auto;
+  background-color: transparent;
+  width: 80px;
+  height: 80px;
+  background-image: url("./assets/компас.png");
+  background-size: cover;
+  border: none;
+  transition: all 0.2s;
+  
+  &:active {
+    transform: translateY(10px);
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
 .staking {
   width: 100vw;
   min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 1000;
+  z-index: 2;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -207,11 +266,9 @@ html, body, .App, #root {
   padding: 0 5%;
 
   &__cards-block {
-    display: flex;
     width: 100%;
-    flex-wrap: wrap;
+    display: flex;
     justify-content: center;
-    margin-right: -30px;
   }
 }
 
@@ -281,4 +338,14 @@ html, body, .App, #root {
   font-weight: 400;
   font-size: 16px;
   line-height: 140%;
+}
+
+.nfts {
+  margin-top: 100px;
+  width: 100vw;
+  padding: 0 10%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 478px);
+  grid-gap: 30px;
 }

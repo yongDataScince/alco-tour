@@ -9,10 +9,6 @@ export const Staking = () => {
         <StakingCart src={bg} name="beer" action="stake" />
         <StakingCart src={bg} name="wine" action="stake"/>
         <StakingCart src={bg} name="rum" action="stake"/>
-
-        <StakingCart src={bg} name="beer" action="withdraw"/>
-        <StakingCart src={bg} name="wine" action="withdraw"/>
-        <StakingCart src={bg} name="rum" action="withdraw"/>
       </div>
     </div>
   )

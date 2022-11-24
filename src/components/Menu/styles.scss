@@ -1,0 +1,20 @@
+.menu {
+  position: fixed;
+  left: 0;
+  top: -10%;
+  width: 60%;
+  height: 120vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../../assets/map.png");
+  background-size: cover;
+  z-index: 1000;
+  padding-top: 30%;
+  align-items: center;
+  transition: all 0.2s;
+  transform: translateX(-100%);
+
+  &.opened {
+    transform: translateX(0);
+  }
+}

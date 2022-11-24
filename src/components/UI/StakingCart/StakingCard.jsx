@@ -11,9 +11,18 @@ export const StakingCard = ({ src, name, action }) => {
       <img src={src} alt="" />
       <p className="staking-card__name">{name}</p>
       <div className="staking-card__btn-group">
-        <Button className="staking-card__btn" text={action === 'stake' ? 'stake' : 'claim'} variant={action === 'stake' ? 'yellow' : 'blue'} onClick={() => {
+        <Button className="staking-card__btn" text="stake" variant="yellow" onClick={() => {
           dispatch(adminFunction({ 
-            method: action,
+            method: 'stake',
+            contract: 'bottleStakingContract',
+            args: [
+              []
+            ]
+          }))
+        }} />
+        <Button className="staking-card__btn" text="claim" variant="blue" onClick={() => {
+          dispatch(adminFunction({ 
+            method: "withdraw",
             contract: 'bottleStakingContract',
             args: [
               []

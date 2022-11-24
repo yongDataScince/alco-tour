@@ -12,18 +12,34 @@ import { Link } from "react-router-dom";
 import { Admin } from './routes/Admin/Admin';
 import { ConnectBtn } from './components/ConnectBtn/ConnectBtn';
 import { useSelector } from 'react-redux';
+import { Menu } from './components/Menu/Menu';
+import { useEffect, useRef, useState } from 'react';
+import { useOnClickOutside } from './hooks';
 
 function App() {
-  const { connected, isAdmin } = useSelector((state) => state.contracts)
+  const { isAdmin, connected } = useSelector((state) => state.contracts)
+  const [opened, setOpened] = useState(false)
+  const menuRef = useRef(null)
+
+  useEffect(() => {
+    setOpened(false)
+  }, [connected])
+
+  useOnClickOutside(menuRef, () => {
+    setOpened(false)
+  })
+
   return (
     <div className="App">
       <Router>
+        <Menu opened={opened} ref={menuRef} />
         <header className="header__main-nav">
-          <div style={{ opacity: Number(!connected), visibility: !connected ? 'visible' : 'hidden', transition: '0.1s' }}><ConnectBtn /></div>
-          <Link to={'/'}><img src={logo} className="header__main-logo" alt="" /></Link>
+          <button className='open-btn' onClick={() => setOpened(true)} />
+          <Link to={'/'} className="logo-link"><img src={logo} className="header__main-logo" alt="" /></Link>
           <p className="header__main-text font-16-p">
             <Link to="/staking">Staking</Link>
             { isAdmin && <Link to="/admin">Admin</Link> }
+            <ConnectBtn res="desctop" />
           </p>
         </header>
         <Routes>
