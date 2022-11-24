@@ -272,3 +272,19 @@ html, body, .App, #root {
   font-size: 16px;
   line-height: 140%;
 }
+
+.nfts {
+  margin-top: 100px;
+  width: 100vw;
+  padding: 0 10%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 478px;
+  grid-gap: 30px;
+
+  @media (max-width: 768px)  {
+    padding: 0 5%;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 450px;
+  }
+}

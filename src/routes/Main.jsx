@@ -7,7 +7,7 @@ import { Paper } from "../components/Paper/Paper"
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { buyBox, getSelfNFTs } from "../store";
-import NftPop from "../components/NftPop";
+import NftCard from "../components/NftCard";
 
 export const Main = () => {
   const [isActive, setIsActive] = useState(true);
@@ -57,7 +57,24 @@ export const Main = () => {
             </div>
           </div>
           ) : (
-            <NftPop onClose={() => setIsActive(true)} />
+            <div className="nfts">
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+              <NftCard img={card} name="beer #0001" />
+            </div>
           )
         }
       <Bottles />
