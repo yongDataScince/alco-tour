@@ -1,5 +1,6 @@
 .staking-card {
   padding: 30px;
+  padding-top: 10px;
   background: rgba(255, 240, 186, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 4px 16px rgba(252, 230, 153, 0.19);
@@ -9,10 +10,11 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  position: relative;
 
   img {
     width: 100%;
-    height: 70%;
+    height: 85%;
     border-radius: 55px;
     margin-bottom: 20px;
   }
@@ -25,44 +27,36 @@
     font-size: 30px;
     line-height: 110%;
     margin-bottom: 14px;
-  }
-
-  &__btn-group {
-    width: 100%;
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
-    .btn_text{
-      padding: 30px 80px;
-      white-space: nowrap;
-      @media (max-width:780px) {
-        padding: 30px 80px;
-      }
-    }
-  }
-
-  &__btn {
-    padding-top: 0 !important;
-    padding-bottom: 2%;
-    margin-top: 2%;
-    font-size: 22px !important;
-    background: none;
-    border: none;
-    background-size: contain;
-    width: 70% !important;
-    height: 50px !important;
-
-    &:first-child {
-      margin-right: 20px;
-    }
-
-    .btn_text {
-      padding: 0 !important;
-      margin: 0 !important;
-    }
+    text-align: center;
   }
 
   &:nth-child(2) {
     margin: 0 25px;
+    @media (max-width: 768px) {
+      margin: 0;
+      margin: 16px 0;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 30%;
+    width: 15px;
+    transform: translate(-50%, -50%);
+    background: #FFF;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 30%;
+    width: 15px;
+    transform: translate(-50%, -50%) rotate(90deg);
+    background: #FFF;
   }
 }

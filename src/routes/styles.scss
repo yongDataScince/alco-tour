@@ -1,0 +1,43 @@
+.staking__cards-block {
+  @media (max-width:780px) {
+    min-height: 150vh;
+  }
+}
+
+.staking--btn-group {
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  .btn_text{
+    padding: 30px 80px;
+    white-space: nowrap;
+    @media (max-width:780px) {
+      padding: 30px 80px;
+    }
+  }
+}
+
+.staking--btn {
+  padding-top: 0 !important;
+  padding-bottom: 2%;
+  font-size: 26px !important;
+  background: none;
+  border: none;
+  background-size: contain;
+  width: 250px !important;
+  height: 100px !important;
+
+  .btn_text {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  &:first-child {
+    margin-right: 20px;
+  }
+
+  @media (max-width:780px) {
+    padding-top: 30px !important;
+  }
+}

@@ -13,16 +13,16 @@ export const Footer = () => {
       <p className="footer__main--sub-title">Don`t miss anything! Join our WTFam. </p>
 
       <div className="links-block">
-        <div className="link-btn">
+        <a className="link-btn" href="https://twitter.com/AlcoTripGames">
           <img src={Twitter} alt="" />
-        </div>
-        <div className="link-btn">
+        </a>
+        <a className="link-btn" href="https://t.me/AlcoTripChat">
           <img src={Telegram} alt="" />
           chat
-        </div>
-        <div className="link-btn">
+        </a>
+        <a className="link-btn" href="https://discord.com/invite/yUPDRz7v5s">
           <img src={Reddit} alt="" />
-        </div>
+        </a>
       </div>
 
       <div className="sub-info">

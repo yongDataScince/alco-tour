@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { ethers } from 'ethers'
 import logo from "./assets/logo.svg";
 import { Footer } from './components/Footer/Footer';
 import { Main } from './routes/Main';
@@ -15,15 +16,30 @@ import { useSelector } from 'react-redux';
 import { Menu } from './components/Menu/Menu';
 import { useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from './hooks';
+import { arrayify } from 'ethers/lib/utils';
 
 function App() {
-  const { isAdmin, connected } = useSelector((state) => state.contracts)
+  const { isAdmin, connected, signerAddr, provider, nftBoxContract, loading } = useSelector((state) => state.contracts)
   const [opened, setOpened] = useState(false)
   const menuRef = useRef(null)
 
   useEffect(() => {
     setOpened(false)
-  }, [connected])
+    if (connected) {
+      const buyBoxFilter = {
+        address: "0x6c9555AbAED8BAB65e844B661e2c49d97f0E26ba",
+        topics: [
+            ethers.utils.id("BuyBox(address,uint256)")
+        ]
+      }
+      nftBoxContract.on("BuyBox(address,uint256)", (address, id) => {
+        console.log("Buy", address, id);
+      })
+      provider.on(buyBoxFilter, (address, id) => {
+        // console.log("Buy", address, id);
+      })
+    }
+  }, [connected, nftBoxContract, provider])
 
   useOnClickOutside(menuRef, () => {
     setOpened(false)
@@ -31,9 +47,11 @@ function App() {
 
   return (
     <div className="App">
+      { loading && <div className='loading' />}
       <Router>
         <Menu opened={opened} ref={menuRef} />
         <header className="header__main-nav">
+        {signerAddr && <p className='header__main-text desctop address'>{signerAddr.slice(0, 7)}..{signerAddr.slice(35, 42)}</p>}
           <button className='open-btn' onClick={() => setOpened(true)} />
           <Link to={'/'} className="logo-link"><img src={logo} className="header__main-logo" alt="" /></Link>
           <p className="header__main-text font-16-p">

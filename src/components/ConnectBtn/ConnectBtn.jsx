@@ -2,7 +2,7 @@ import Web3Modal from 'web3modal'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { disconnect, initContracts } from '../../store';
+import { disconnect, getUserNFTs, initContracts } from '../../store';
 import Button from '../UI/Button';
 
 export const ConnectBtn = ({ res }) => {

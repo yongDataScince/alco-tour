@@ -3,15 +3,15 @@ import cn from "classnames";
 import chest from "../assets/chest.png";
 import Button from "../components/UI/Button";
 import { Paper } from "../components/Paper/Paper"
+import NftCard from "../components/NftCard"
+
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { buyBox, getSelfNFTs } from "../store";
-import card from "../assets/card.png"
-import NftCard from "../components/NftCard";
+import { buyBox, getUserNFTs } from "../store";
 
 export const Main = () => {
   const [isActive, setIsActive] = useState(true);
-  const { prices } = useSelector((state) => state.contracts);
+  const { prices, userBottlesNFTs, userBoxesNFTs, beerAmount, rumAmount, wineAmount } = useSelector((state) => state.contracts);
   const dispatch = useDispatch()
 
   return (
@@ -26,7 +26,7 @@ export const Main = () => {
           <button className={cn("font-24", {
             active: !isActive
           })} onClick={() => {
-            dispatch(getSelfNFTs())
+            dispatch(getUserNFTs("all"))
             setIsActive(false)
           }}>My NFT</button>
         </div>
@@ -39,45 +39,38 @@ export const Main = () => {
               <Button text="Buy Rum Box" className="buy-nft-btn" variant="blue" height={100} width={230} onClick={() => {
                 dispatch(buyBox({ boxType: 1, price: prices.rumPrice }))
               }} />
-              <button className="buy-btn">{prices.rumPrice} USDT</button>
-              <p className="sub-text">The amount on sale: XX</p>
+              <button className="buy-btn">{prices.rumPrice} ETH</button>
+              <p className="sub-text">The amount on sale: { rumAmount }</p>
             </div>
             <div className="chest-box">
               <img className="chest-box--img" src={chest} alt="" />
               <Button text="Buy Wine Box" className="buy-nft-btn" variant="blue" height={100} width={230} onClick={() => {
                 dispatch(buyBox({ boxType: 2, price: prices.winePrice }))
               }} />
-              <button className="buy-btn">{prices.winePrice} USDT</button>
-              <p className="sub-text">The amount on sale: XX</p>
+              <button className="buy-btn">{prices.winePrice} ETH</button>
+              <p className="sub-text">The amount on sale: { wineAmount }</p>
             </div>
             <div className="chest-box">
               <img className="chest-box--img" src={chest} alt="" />
               <Button text="Buy Beer Box" className="buy-nft-btn" variant="blue" height={100} width={230} onClick={() => {
                 dispatch(buyBox({ boxType: 3, price: prices.beerPrice }))
               }} />
-              <button className="buy-btn">{prices.beerPrice} USDT</button>
-              <p className="sub-text">The amount on sale: XX</p>
+              <button className="buy-btn">{prices.beerPrice} ETH</button>
+              <p className="sub-text">The amount on sale: { beerAmount }</p>
             </div>
           </div>
           ) : (
-            <div className="nfts">
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-              <NftCard img={card} name="beer #0001" />
-            </div>
+            userBottlesNFTs.length > 0 || userBoxesNFTs.length > 0 ? (
+              <div className="nfts">
+                {
+                  userBoxesNFTs.map((info) => (
+                    <NftCard img={info.url} name={info.name} key={info.id} />
+                  ))
+                }
+              </div>
+            ) : (
+              <h1 className="no-nft" style={{ color: "#FFF" }}>You're not have any NFTs</h1>
+            )
           )
         }
       <Bottles />

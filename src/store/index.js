@@ -13,6 +13,12 @@ const initialContractsState = {
   connected: false,
   activePreSale: false,
   activeSale: false,
+  userBottlesNFTs: [],
+  userBoxesNFTs: [],
+  currentIds: [],
+  beerAmount: '-',
+  rumAmount: '-',
+  wineAmount: '-',
   prices: {
     rumPrice: '0.0',
     winePrice: '0.0',
@@ -24,6 +30,113 @@ const initialContractsState = {
   bottleStakingContract: undefined,
   lotteryContract: undefined
 }
+
+export const getUserNFTs = createAsyncThunk("cont/nfts", async (type, { getState }) => {
+  let { contracts } = getState();
+
+  let bottles = contracts.nftBottleContract;
+  let boxes = contracts.nftBoxContract;
+
+
+  if (type === 'all') {
+    let resBottles = Number(ethers.utils.formatEther(await bottles.balanceOf(contracts.signerAddr)))
+    let resBoxes = Number(ethers.utils.formatEther(await boxes.balanceOf(contracts.signerAddr)))
+
+    let bottlesIds = [];
+    let boxesIds = [];
+
+    if (resBoxes > 0) {
+      let id = 2;
+      while (boxesIds.length < resBoxes) {
+        let resAddr;
+        try {
+          resAddr = await boxes.ownerOf(id)
+        } catch (error) {
+          console.log(error);
+          continue;
+        }
+        if (resAddr === contracts.signerAddr) {
+          let nftInfo = {};
+          nftInfo.id = id;
+          nftInfo.url = await boxes.tokenURI(id);
+          nftInfo.name = "#" + String(id).padStart(4, '0')
+
+          boxesIds.push(nftInfo)
+        }
+        id += 1;
+      }
+    }
+
+    if (resBottles > 0) {
+      let id = 2;
+      while (bottlesIds.length < resBottles) {
+        let resAddr;
+        try {
+          resAddr = await bottles.ownerOf(id)
+        } catch (error) {
+          console.log(error);
+          continue;
+        }
+        if (resAddr === contracts.signerAddr) {
+          let nftInfo = {};
+          nftInfo.id = id;
+          nftInfo.url = bottles.tokenURI(id);
+          nftInfo.name = "#" + String(id).padStart(4, '0')
+
+          boxesIds.push(nftInfo)
+        }
+        id += 1;
+      }
+    }
+  
+    return {
+      bottlesIds,
+      boxesIds
+    }
+  } else if (type === 'bottle') {
+    let bottlesIds = [];
+    let id = 2;
+    let resBottles = Number(ethers.utils.formatEther(await bottles.balanceOf(contracts.signerAddr)))
+
+    while (bottlesIds.length < resBottles) {
+      let resAddr = await bottles.ownerOf(id);
+      if (resAddr === contracts.signerAddr) {
+        let nftInfo = {};
+        nftInfo.id = id;
+        nftInfo.url = await bottles.tokenURI(id);
+        nftInfo.name = "#" + String(id).padStart(4, '0')
+
+        bottlesIds.push(nftInfo)
+      }
+      id += 1;
+    }
+
+    return {
+      bottlesIds
+    }
+  } else {
+    let boxesIds = [];
+    let id = 2;
+    let resBoxes = Number(ethers.utils.formatEther(await boxes.balanceOf(contracts.signerAddr)))
+    
+    while (boxesIds.length < resBoxes) {
+      let resAddr = await boxes.ownerOf(id);
+      if (resAddr === contracts.signerAddr) {
+        let nftInfo = {};
+        nftInfo.id = id;
+        nftInfo.url = await boxes.tokenURI(id);
+        nftInfo.name = "#" + String(id).padStart(4, '0')
+
+        boxesIds.push(nftInfo)
+      }
+      id += 1;
+    }
+
+    return {
+      boxesIds
+    }
+  }
+})
 
 export const disconnect = createAsyncThunk("contracts/disconnect", async () => {})
 
@@ -43,6 +156,10 @@ export const initContracts = createAsyncThunk("contracts/init-contracts", async 
 
   const signerAddr = await signer.getAddress()
 
+  const beerAmount = Number( await nftBoxContract.amountBoxBeer())
+  const rumAmount = Number(await nftBoxContract.amountBoxRum())
+  const wineAmount = Number(await nftBoxContract.amountBoxWine())
+
   const boxOwner = await nftBoxContract.owner();
   const bottleOwner = await nftBottleContract.owner();
   const stakingOwner = await bottleStakingContract.owner();
@@ -61,9 +178,66 @@ export const initContracts = createAsyncThunk("contracts/init-contracts", async 
   let activeSale = await nftBoxContract.activeSaleTime();
   let activePreSale = await nftBoxContract.activePresaleTime();
 
+  const bottles = nftBottleContract;
+  const boxes = nftBoxContract;
+
+  let resBottles = Number(ethers.utils.formatEther(await bottles.balanceOf(signerAddr)))
+    let resBoxes = Number(ethers.utils.formatEther(await boxes.balanceOf(signerAddr)))
+
+    let bottlesIds = [];
+    let boxesIds = [];
+
+    if (resBoxes > 0) {
+      let id = 2;
+      while (boxesIds.length < resBoxes) {
+        let resAddr;
+        try {
+          resAddr = await boxes.ownerOf(id)
+        } catch (error) {
+          console.log(error);
+          continue;
+        }
+        if (resAddr === signerAddr) {
+          let nftInfo = {};
+          nftInfo.id = id;
+          nftInfo.url = await boxes.tokenURI(id);
+          nftInfo.name = "#" + String(id).padStart(4, '0')
+
+          boxesIds.push(nftInfo)
+        }
+        id += 1;
+      }
+    }
+
+    if (resBottles > 0) {
+      let id = 2;
+      while (bottlesIds.length < resBottles) {
+        let resAddr;
+        try {
+          resAddr = await bottles.ownerOf(id)
+        } catch (error) {
+          console.log(error);
+          continue;
+        }
+        if (resAddr === signerAddr) {
+          let nftInfo = {};
+          nftInfo.id = id;
+          nftInfo.url = bottles.tokenURI(id);
+          nftInfo.name = "#" + String(id).padStart(4, '0')
+
+          boxesIds.push(nftInfo)
+        }
+        id += 1;
+      }
+    }
 
   return {
     isAdmin: boxOwner === signerAddr && bottleOwner === signerAddr && stakingOwner === signerAddr && lotteryOwner === signerAddr,
+    bottlesIds,
+    beerAmount,
+    rumAmount,
+    wineAmount,
+    boxesIds,
     signerAddr,
     activePreSale,
     activeSale,
@@ -78,6 +252,34 @@ export const initContracts = createAsyncThunk("contracts/init-contracts", async 
     lotteryContract,
     provider
   }
+})
+
+export const stakeIds = createAsyncThunk('contracts/stake', async (ids, { getState }) => {
+  let { contracts } = getState();
+
+  let provider = contracts.provider;
+  let stakingContract = contracts.bottleStakingContract;
+
+  let filter = {
+    address: stakingContract.address,
+    topics: [
+      "GetLP(address,uint256)"
+    ]
+  }
+
+  console.log("filter: ", stakingContract.filters.GetLP(contracts.signerAddr, null));
+
+  // let lpIds = [];
+  // provider.on(filter, () => {
+
+  // })
+
+  // const tx = await stakingContract.getLP(ids);
+  // await tx.wait();
+
+  // const tx2 = await stakingContract.stake(ids);
+
+  // await tx2.wait()
 })
 
 export const adminFunction = createAsyncThunk('contracts/admin-func', async ({ method, contract, args }, { getState }) => {
@@ -108,29 +310,25 @@ export const buyBox = createAsyncThunk("contracts/buy-box", async ({ boxType, pr
 
 export const openBox = createAsyncThunk("contracts/open-box", async (boxType, { getState }) => {
   let { contracts } = getState()
-  
-  const tx = await contracts.nftBottleContract.openBox(boxType)
+
+  const tx = await contracts.nftBottleContract.openBox(contracts.userBoxesNFTs[0].id)
   await tx.wait();
-})
-
-export const getSelfNFTs = createAsyncThunk('contracts/get-nft', async (_, { getState }) => {
-  let { contracts, signerAddr } = getState()
-  
-  const boxNft = contracts.nftBoxContract
-  const bottleNft = contracts.nftBottleContract
-  
-  const transferFilter = boxNft.filters.BuyBox(null, null)
-
-  console.log(transferFilter);
-
-  const boxTokens = await boxNft.queryFilter(transferFilter)
-  console.log(boxTokens);
 })
 
 export const contractsSlice = createSlice({
   name: 'contracts',
   initialState: initialContractsState,
   extraReducers: (builder) => {
+    
+    builder.addCase(getUserNFTs.fulfilled, (state, { payload }) => {
+      if (payload.bottlesIds) {
+        state.userBottlesNFTs = payload.bottlesIds
+      }
+      if (payload.boxesIds) {
+        state.userBoxesNFTs = payload.boxesIds
+      }
+    })
+
     builder.addCase(initContracts.fulfilled, (state, { payload }) => {
       state.signerAddr = payload.signerAddr;
       state.activePreSale = payload.activePreSale;
@@ -143,6 +341,11 @@ export const contractsSlice = createSlice({
       state.nftBottleContract = payload.nftBottleContract;
       state.lotteryContract = payload.lotteryContract;
       state.nftBoxContract = payload.nftBoxContract;
+      state.userBottlesNFTs = payload.bottlesIds;
+      state.userBoxesNFTs = payload.boxesIds;
+      state.rumAmount = payload.rumAmount;
+      state.beerAmount = payload.beerAmount;
+      state.wineAmount = payload.wineAmount;
     })
 
     builder.addCase(disconnect.fulfilled, (state) => {
@@ -170,6 +373,7 @@ export const contractsSlice = createSlice({
       state.activeSale = payload.activeSale;
       state.activePreSale = payload.activePreSale;
     })
+
     builder.addCase(adminFunction.rejected, (_s, { error }) => {
       console.log(error);
     })

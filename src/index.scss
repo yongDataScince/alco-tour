@@ -273,8 +273,13 @@ html, body, .App, #root {
 
   &__cards-block {
     width: 100%;
+    height: 400px;
     display: flex;
     justify-content: center;
+    
+    @media (max-width: 768px) { 
+      flex-direction: column;
+    }
   }
 }
 
@@ -346,6 +351,12 @@ html, body, .App, #root {
   line-height: 140%;
 }
 
+.no-nft {
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+}
+
 .nfts {
   margin-top: 100px;
   width: 100vw;
@@ -354,4 +365,23 @@ html, body, .App, #root {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(1, 478px);
   grid-gap: 30px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.address {
+  position: absolute;
+  left: 10%;
+}
+
+.loading {
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.6);
 }
