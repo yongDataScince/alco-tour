@@ -12,34 +12,27 @@ import { Staking } from './routes/Staking';
 import { Link } from "react-router-dom";
 import { Admin } from './routes/Admin/Admin';
 import { ConnectBtn } from './components/ConnectBtn/ConnectBtn';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Menu } from './components/Menu/Menu';
 import { useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from './hooks';
-import { arrayify } from 'ethers/lib/utils';
+import { addBoxIdAct } from './store';
 
 function App() {
   const { isAdmin, connected, signerAddr, provider, nftBoxContract, loading } = useSelector((state) => state.contracts)
   const [opened, setOpened] = useState(false)
   const menuRef = useRef(null)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setOpened(false)
     if (connected) {
-      const buyBoxFilter = {
-        address: "0x6c9555AbAED8BAB65e844B661e2c49d97f0E26ba",
-        topics: [
-            ethers.utils.id("BuyBox(address,uint256)")
-        ]
-      }
       nftBoxContract.on("BuyBox(address,uint256)", (address, id) => {
-        console.log("Buy", address, id);
-      })
-      provider.on(buyBoxFilter, (address, id) => {
-        // console.log("Buy", address, id);
+        console.log("Buy", address, Number(id));
+        dispatch(addBoxIdAct(Number(id)))
       })
     }
-  }, [connected, nftBoxContract, provider])
+  }, [connected, dispatch, nftBoxContract, provider])
 
   useOnClickOutside(menuRef, () => {
     setOpened(false)

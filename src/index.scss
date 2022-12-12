@@ -385,3 +385,7 @@ html, body, .App, #root {
   height: 100vh;
   background: rgba(255, 255, 255, 0.6);
 }
+
+iframe {
+  display: none !important;
+}
